@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /usr/libexec/dropbox
+exec ./dropboxd "$@"
