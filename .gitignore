@@ -1,2 +1,5 @@
 dropbox-lnx.x86-2.10.28.tar.gz
 dropbox-lnx.x86_64-2.10.28.tar.gz
+/Makefile
+*.src.rpm
+*.tar.gz
