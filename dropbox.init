@@ -47,6 +47,16 @@ start() {
     return $RETVAL
 }
 
+status() {
+    for dbuser in $DROPBOX_USERS; do
+        dbpid=`pgrep -u $dbuser dropbox | grep -v grep`
+        if [ -z $dbpid ] ; then
+            echo "dropbox for USER $dbuser: not running."
+        else
+            echo "dropbox for USER $dbuser: running (pid $dbpid)"
+        fi
+    done
+}
 stop() {
 	if [ -n "$INIT_USER" ]; then
 		echo -n "User $INIT_USER initializing..."
@@ -66,6 +76,9 @@ case "$1" in
     ;;
   stop)
     stop
+    ;;
+  status)
+    status
     ;;
   restart)
     stop

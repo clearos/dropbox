@@ -1,12 +1,13 @@
 Summary: Dropbox file sync tool
 Name: dropbox
-Version: 3.8.8
+Version: 7.4.30
 Release: 1%{?dist}
 License: Proprietary
 Group: System Environment/Daemons 
 URL: http://www.dropbox.com/
-Source0: https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86-%{version}.tar.gz
-Source1: https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86_64-%{version}.tar.gz
+
+Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-%{version}.tar.gz
+Source1: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
 Source2: dropbox.init
 Source3: dropbox.wrapper
 # Avoid duplicate provides
@@ -57,6 +58,9 @@ fi
 %{_libexecdir}/dropbox/
 
 %changelog
+* Thu Aug 18 2016 ClearFoundation <developer@clearfoundation.com> - 7.4.30-1
+- Update to latest version
+
 * Wed Aug 26 2015 ClearFoundation <developer@clearfoundation.com> - 3.8.8-1
 - Update to latest version
 
