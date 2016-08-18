@@ -3,7 +3,7 @@ Name: dropbox
 Version: 7.4.30
 Release: 2%{?dist}
 License: Proprietary
-Group: System Environment/Daemons 
+Group: System Environment/Daemons
 URL: http://www.dropbox.com/
 
 Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-%{version}.tar.gz
