@@ -1,7 +1,7 @@
 Summary: Dropbox file sync tool
 Name: dropbox
 Version: 7.4.30
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: Proprietary
 Group: System Environment/Daemons 
 URL: http://www.dropbox.com/
