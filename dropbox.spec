@@ -1,7 +1,7 @@
 Summary: Dropbox file sync tool
 Name: dropbox
-Version: 7.4.30
-Release: 2%{?dist}
+Version: 19.4.12
+Release: 1%{?dist}
 License: Proprietary
 Group: System Environment/Daemons 
 URL: http://www.dropbox.com/
@@ -58,6 +58,9 @@ fi
 %{_libexecdir}/dropbox/
 
 %changelog
+* Thu Feb 2 2017 ClearFoundation <developer@clearfoundation.com> - 19.4.12-1
+- Update to latest version
+
 * Thu Aug 18 2016 ClearFoundation <developer@clearfoundation.com> - 7.4.30-1
 - Update to latest version
 
