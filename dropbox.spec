@@ -5,6 +5,7 @@ Release: 4%{?dist}
 License: Proprietary
 Group: System Environment/Daemons
 URL: http://www.dropbox.com/
+BuildRequires: systemd-units
 
 Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
 Source1: dropbox.service
