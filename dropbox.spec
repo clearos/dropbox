@@ -1,15 +1,13 @@
 Summary: Dropbox file sync tool
 Name: dropbox
 Version: 19.4.12
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: Proprietary
 Group: System Environment/Daemons 
 URL: http://www.dropbox.com/
 
-Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86-%{version}.tar.gz
-Source1: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
-Source2: dropbox.init
-Source3: dropbox.wrapper
+Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
+Source1: dropbox.service
 # Avoid duplicate provides
 AutoReqProv: no
 # Don't create debug
@@ -21,43 +19,43 @@ AutoReqProv: no
 Dropbox is software that syncs your files online and across your computers.
 
 %prep
-%ifarch x86_64
-%setup -n .dropbox-dist -T -b 1
-%else
 %setup -n .dropbox-dist -T -b 0
-%endif
 
 %build
 
 %install
 %{__rm} -rf %{buildroot}
 
-%{__install} -Dp -m0755 %{SOURCE2} %{buildroot}%{_sysconfdir}/init.d/dropbox
-%{__install} -Dp -m0755 %{SOURCE3} %{buildroot}%{_bindir}/dropbox
-%{__install} -d %{buildroot}%{_libexecdir}/dropbox/
-%{__cp} -a ./* %{buildroot}%{_libexecdir}/dropbox/
+mkdir -p ${RPM_BUILD_ROOT}%{_unitdir}
+install -p -m 644 %{SOURCE1} ${RPM_BUILD_ROOT}%{_unitdir}/%{name}@.service
+install -d %{buildroot}%{_libexecdir}/dropbox/
+cp -a ./* %{buildroot}%{_libexecdir}/dropbox/
 
-# symlink in tar.gz is derefenced, so recreate it here
-%{__rm} -fv %{buildroot}%{_libexecdir}/dropbox/dropbox
-ln -s %{_libexecdir}/dropbox/library.zip  %{buildroot}%{_libexecdir}/dropbox/dropbox
+# Remove old unit file that did not support multi-user
+rm -f %{_unitdir}/%{name}.service
+rm -f %{_libexecdir}/dropbox/dropbox-lnx.x86_64-%{version}/dropbox
+ln -s %{_libexecdir}/dropbox/dropbox-lnx.x86_64-%{version}/dropbox  %{buildroot}%{_libexecdir}/dropbox/dropbox
 
 %post
-if (( $1 < 2 )); then
-    /sbin/chkconfig --add dropbox &>/dev/null || :
-fi
 
 %preun
 if (( $1 == 0 )); then
-    /sbin/chkconfig --del dropbox &>/dev/null || :
+    /usr/bin/systemctl disable dropbox &>/dev/null || :
 fi
 
 %files
 %defattr(-,root,root,0755)
-%config %{_sysconfdir}/init.d/dropbox
-%{_bindir}/dropbox
 %{_libexecdir}/dropbox/
+%{_unitdir}/dropbox@.service
 
 %changelog
+* Fri Feb 3 2017 ClearFoundation <developer@clearfoundation.com> - 19.4.12-4
+- Remove old non-multiservice unit file
+
+* Thu Feb 2 2017 ClearFoundation <developer@clearfoundation.com> - 19.4.12-3
+- 64 bit only
+- Migrate to sytemd
+
 * Thu Feb 2 2017 ClearFoundation <developer@clearfoundation.com> - 19.4.12-1
 - Update to latest version
 
