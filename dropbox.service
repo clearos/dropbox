@@ -1,0 +1,11 @@
+[Unit]
+Description=Dropbox service for user %i
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c '/usr/libexec/dropbox/dropboxd %i | /usr/bin/install -D /dev/stdin /home/%i/.dropbox/init.log 2>&1'
+User=%i
+
+[Install]
+WantedBy=multi-user.target
