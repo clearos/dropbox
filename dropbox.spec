@@ -1,7 +1,7 @@
 Summary: Dropbox file sync tool
 Name: dropbox
-Version: 19.4.12
-Release: 4%{?dist}
+Version: 32.4.23
+Release: 1%{?dist}
 License: Proprietary
 Group: System Environment/Daemons
 URL: http://www.dropbox.com/
@@ -50,6 +50,9 @@ fi
 %{_unitdir}/dropbox@.service
 
 %changelog
+* Tue Aug 22 2017 ClearFoundation <developer@clearfoundation.com> - 32.4.23-1
+- Update to latest version
+
 * Fri Feb 3 2017 ClearFoundation <developer@clearfoundation.com> - 19.4.12-4
 - Remove old non-multiservice unit file
 
