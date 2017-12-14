@@ -1,13 +1,13 @@
 Summary: Dropbox file sync tool
 Name: dropbox
-Version: 32.4.23
+Version: 34.4.22
 Release: 1%{?dist}
 License: Proprietary
 Group: System Environment/Daemons
 URL: http://www.dropbox.com/
 BuildRequires: systemd-units
 
-Source0: https://dl.dropboxusercontent.com/u/17/dropbox-lnx.x86_64-%{version}.tar.gz
+Source0: https://d1ilhw0800yew8.cloudfront.net/client/dropbox-lnx.x86_64-%{version}.tar.gz
 Source1: dropbox.service
 # Avoid duplicate provides
 AutoReqProv: no
@@ -50,6 +50,9 @@ fi
 %{_unitdir}/dropbox@.service
 
 %changelog
+* Thu Dec 13 2017 ClearFoundation <developer@clearfoundation.com> - 34.4.22-1
+- Update to latest version
+
 * Tue Aug 22 2017 ClearFoundation <developer@clearfoundation.com> - 32.4.23-1
 - Update to latest version
 
